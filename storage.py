@@ -6,13 +6,15 @@ class Node:
         """ Store the data, and set next to None"""
 
     def __str__(self):
-        self.head = None
+        if self.data is not None:
+            return (str(self.data))
         """ Return a string representation of the data """
 
 
 class Storage:
     def __init__(self):
         self.head = None
+        self.next = None
         """ Creates an empty Storage class. Sets head to None. """
 
     def push(self, data):
@@ -22,36 +24,34 @@ class Storage:
             self.head = node
             return
 
-        Node.next = self.head
-        self.head = Node
+        node.next = self.head
+        self.head = node
         """ Create a Node to hold the data, then put it at the head of the list. """
 
     def pop(self):
 
-        node = Node()
-        self.head = node
-
-        if node is None:
-            return False
+        if self.head is None:
+            print("Empty.")
+            return
         
-        print(node.data)
+        node = self.head
         self.head = node.next
-        return True
+        return node.data
         """ Remove the head Node and return its data. """
 
     def peek(self):
 
-        node = Node()
+        node = self.head
         if node is None:
             print("Null")
             return False
-        print(node.data)
-        return True
+    
+        return node.data
     
         """ Return the data from the head Node, without removing it. """
 
     def isempty(self):
-        node = Node()
+        node = self.head
         if node is None:
             return True
         else:
